@@ -1,7 +1,7 @@
 const session = require('express-session')
 const bodyParser = require('body-parser')
 
-async function Middleware(app, exp) {
+async function Middleware(app, exp, root) {
   // app.use(bodyParser.json())
   app.use(bodyParser.text())
   app.use(
@@ -16,6 +16,8 @@ async function Middleware(app, exp) {
       saveUninitialized: false,
     })
   )
+
+  app.use(exp.static(root + '/statics'))
 }
 
 module.exports = Middleware
